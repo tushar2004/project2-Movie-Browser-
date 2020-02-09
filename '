@@ -1,0 +1,68 @@
+import React from 'react'
+import { Button, View, Text, StyleSheet, TextInput, Picker, AsyncStorage } from 'react-native'
+
+const styles = StyleSheet.create({
+	container: {
+		flex:1,	
+		justifyContent: 'center',
+		alignContent: 'center'
+	},
+	text: {
+		textAlign: 'center',
+		fontSize: 24,
+	},
+	yearField: {
+		borderWidth: 1,
+		height: 30,
+		width: 70,
+	},
+	displayInline: {
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+		margin: 20,
+	},
+	plotPicker: {
+		width: 50,
+		height: 50
+	},
+})
+
+export default class SettingsScreen extends React.Component {
+	static navigationOptions = {
+		headerTitle: 'Settings'
+	}
+	
+	state = {
+		year: null,
+		plot: null,
+	}
+
+	handleYearChange = year => {
+		this.setState({year});
+	}
+
+	handlePlotChange = (itemValue) => {
+		this.setState({plot: itemValue});
+	}
+	
+	_saveChanges = async () => {
+		AsyncStorage.multiSet([['searchYear', this.state.year], ['searchPlotType', this.state.plot]]);
+	}
+
+	render() {
+		return (
+			<View style={styles.container}>
+				<View style={styles.displayInline}>
+					<Text style={styles.text}>Year:</Text>
+					<TextInput placholder="Year" keyboardType="number-pad" value={this.state.year} onChangeText={this.handleYearChange} style={styles.yearField}/>					
+					<Text>Plot:</Text>
+					<Picker style={styles.plotPicker} onValueChange={plot => this.handlePlotChange(plot)} selectedValue={this.state.plot}>
+						<Picker.Item label="Short" value="short" />
+						<Picker.Item label="Full" value="full" />
+					</Picker>
+				<Button title="Apply Changes" onPress={() => this._saveChanges()} />
+				</View>
+			</View>
+		)
+	}
+}
