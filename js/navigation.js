@@ -39,7 +39,7 @@ const AppNavigator = createBottomTabNavigator(
 			return <Icon name={icon} size={30} color={tintColor} />
 		}	
 	}),
-	initialRouteName: 'Settings',
+	initialRouteName: 'Movies',
 	tabBarOptions: {
 		activeTintColor: 'orange',
 		inactiveTintColor: 'grey',
