@@ -1,4 +1,4 @@
-const apiKey = 'aec02db0'
+const apiKey = 'API_KEY'
 
 export const searchMovies = async (searchYear, searchContentType, searchKeywords, page=1) => {
 	const url = `http://www.omdbapi.com/?apikey=${apiKey}&s=${searchKeywords}&page=${page}&y=${searchYear}&type=${searchContentType}`;
