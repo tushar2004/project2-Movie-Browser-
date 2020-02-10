@@ -44,17 +44,6 @@ const styles = StyleSheet.create({
 	}
 })
 
-/*
-const RenderRatings = rating => {
-	return (
-		<View>
-			<Text>{rating.Source}</Text>
-			<Text>{rating.Value}</Text>
-		</View>
-	)
-}
-*/
-
 export default class MovieDetailsScreen extends React.Component {
 	static navigationOptions = ({navigation}) => {
 		return {
@@ -63,7 +52,7 @@ export default class MovieDetailsScreen extends React.Component {
 	}
 	
 	state = {
-		Loading: false,
+		Loading: true,
 		Title: '',
 		Poster: '',
 		Plot: '',
@@ -81,8 +70,7 @@ export default class MovieDetailsScreen extends React.Component {
 		let movie;
 		try {
 			movie = await searchMovie(movieID);
-			//movie = await searchMovie(searchContentType, movieID)  
-			this.setState({Loading: true, ...movie})
+			this.setState({...movie});
 			setTimeout(() => this.setState({Loading: false}), 1000)
 		} catch(err) {
 			this.setState({err});
