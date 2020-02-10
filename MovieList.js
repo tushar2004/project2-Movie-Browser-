@@ -65,7 +65,7 @@ export default class MovieList extends React.Component {
 			<View>
 				<Text style={styles.searchResultHeading}>{this.props.data.movies ? `${this.props.data.totalResults} results found for '${this.props.data.keywords}'` : ''}</Text>
 				<FlatList
-					onEndReachedThreshold={0.9}
+					onEndReachedThreshold={0.5}
 					onEndReached={() => this.onEndReached()}
 					renderItem={this.renderItem}
 					data={this.state.movies}

@@ -65,8 +65,8 @@ export default class SearchScreen extends React.Component {
 					// OR
 				// this.setState({err: 'Something went wrong, please try again after some time.'});
 		} catch(err) {
-			//return err;
-			throw new Error(err);
+			return;
+			//throw new Error(err);
 		}
 	}
 
@@ -76,9 +76,9 @@ export default class SearchScreen extends React.Component {
 			const result = await this.queryMovies(keywords)
 			if (result) {
 				const { Search, keywords, totalResults } = result;
-				this.setState({data: { movies: [...Search], totalResults, keywords }})
+				this.setState({data: { movies: [...Search], totalResults, keywords }});
 			} else {
-				this.setState({data: null})
+				if(this.state.data) this.setState({data: null})
 			}
 		} catch(err) {
 			this.setState({err})

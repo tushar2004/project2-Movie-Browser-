@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, View, Text, StyleSheet, TextInput, Picker, AsyncStorage } from 'react-native';
+import { TouchableOpacity, Button, View, Text, StyleSheet, TextInput, Picker, AsyncStorage } from 'react-native';
 //import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { SwitchActions, NavigationActions } from 'react-navigation';
@@ -98,6 +98,11 @@ export default class SettingsScreen extends React.Component {
 					<Icon name={'ios-calendar'} style={styles.iconMargin} size={30} color={'black'} />
 					<Text style={[styles.text, {marginRight: 10, marginTop: 7}]}>Year:</Text>
 					<TextInput placholder="Year" keyboardType="number-pad" value={this.state.year} onChangeText={this.handleYearChange} style={styles.yearField}/>
+					{this.state.year !== '' && (
+						<TouchableOpacity style={{marginLeft: 20}} onPress={() => this.handleYearChange('')}>
+							<Icon name={'ios-close-circle-outline'} size={30} color={'black'} />
+						</TouchableOpacity>
+					)}
 				</View>
 				<View style={[styles.displayInline, {marginTop: 20, alignItems: 'center'}]}>
 					<Icon style={styles.iconMargin} name={'ios-tv'} color={'black'} size={30} />

@@ -4,7 +4,9 @@ export const searchMovies = async (searchYear, searchContentType, searchKeywords
 	const url = `http://www.omdbapi.com/?apikey=${apiKey}&s=${searchKeywords}&page=${page}&y=${searchYear}&type=${searchContentType}`;
 	const response = await fetch(url);
 	const result = await response.json();
-	return result;
+	if(result.Response === 'True') {
+		return result;
+	}
 	/*
 	if(result.Search !== undefined) {
 		const data = result.Search.map(movie => {
